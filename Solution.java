@@ -78,17 +78,16 @@ public class Solution {
                 return newNode;
             }
 
-
             int count = 0;
+            SinglyLinkedListNode prev = null;
             SinglyLinkedListNode current = llist;
             while (true) {
-                if (count == position - 1) {
-                    SinglyLinkedListNode temp;
-                    if (current.next == null) temp = null; else temp = current.next.next;
-                    current.next = newNode;
-                    newNode.next = temp;
+                if (count == position) {
+                    prev.next = newNode;
+                    prev.next.next = current;
                     break;
                 }
+                prev = current;
                 current = current.next;
                 count++;
             }
